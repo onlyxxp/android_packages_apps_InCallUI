@@ -32,10 +32,10 @@ import android.provider.ContactsContract.RawContacts;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
-import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
-import com.google.i18n.phonenumbers.NumberParseException;
-import com.google.i18n.phonenumbers.PhoneNumberUtil;
-import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.android.i18n.phonenumbers.NumberParseException;
+import com.android.i18n.phonenumbers.PhoneNumberUtil;
+import com.android.i18n.phonenumbers.Phonenumber.PhoneNumber;
+import com.android.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder;
 
 import java.util.Locale;
 
@@ -483,6 +483,15 @@ public class CallerInfo {
             }
         }
         geoDescription = (address == null ? getGeoDescription(context, number) : address);
+    }
+
+    public void updatePhoneLabel(Context context, String fallbackNumber) {
+        String number = TextUtils.isEmpty(phoneNumber) ? fallbackNumber : phoneNumber;
+        if (phoneLabel == null) {
+            phoneLabel = "";
+        }
+
+        phoneLabel += ("  " + getGeoDescription(context, number));
     }
 
     /**

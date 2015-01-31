@@ -284,6 +284,8 @@ public class CallerInfoAsyncQuery {
                                 // *or* phoneNumber).  So we need to pass in cw.number as
                                 // a fallback number.
                                 mCallerInfo.updateGeoDescription(mQueryContext, cw.number);
+                            }  else {
+                                mCallerInfo.updatePhoneLabel(mQueryContext, cw.number);
                             }
                         }
 
